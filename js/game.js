@@ -18,9 +18,6 @@ var player = new Mario.Player([0,0]);
 
 //we might have to get the size and calculate the scaling
 //but this method should let us make it however big.
-//Cool!
-//TODO: Automatically scale the game to work and look good on widescreen.
-//TODO: fiddling with scaled sprites looks BETTER, but not perfect. Hmm.
 canvas.width = 762;
 canvas.height = 720;
 ctx.scale(3,3);
