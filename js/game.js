@@ -157,39 +157,3 @@ function updateEntities(dt, gameTime) {
     pipe.update(dt);
   });
 }
-
-//scan for collisions
-function checkCollisions() {
-  if (player.powering.length !== 0 || player.dying) { return; }
-  player.checkCollisions();
-
-  //Apparently for each will just skip indices where things were deleted.
-  level.items.forEach(function(item) {
-    item.checkCollisions();
-  });
-  level.enemies.forEach (function(ent) {
-    ent.checkCollisions();
-  });
-  fireballs.forEach(function(fireball){
-    fireball.checkCollisions();
-  });
-  level.pipes.forEach (function(pipe) {
-    pipe.checkCollisions();
-  });
-}
-
-//draw the game!
-function render() {
-  updateables = [];
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = level.background;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  //scenery gets drawn first to get layering right.
-  for(var i = 0; i < 15; i++) {
-    for (var j = Math.floor(vX / 16) - 1; j < Math.floor(vX / 16) + 20; j++){
-      if (level.scenery[i][j]) {
-        renderEntity(level.scenery[i][j]);
-      }
-    }
-  }
