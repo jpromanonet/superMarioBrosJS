@@ -221,18 +221,3 @@ function render() {
       }
     }
   }
-
-  //then the player
-  if (player.invincibility % 2 === 0) {
-    renderEntity(player);
-  }
-
-  //Mario goes INTO pipes, so naturally they go after.
-  level.pipes.forEach (function(pipe) {
-    renderEntity(pipe);
-  });
-}
-
-function renderEntity(entity) {
-  entity.render(ctx, vX, vY);
-}
