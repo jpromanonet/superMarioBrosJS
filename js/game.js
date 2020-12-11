@@ -193,31 +193,3 @@ function render() {
       }
     }
   }
-
-  //then items
-  level.items.forEach (function (item) {
-    renderEntity(item);
-  });
-
-  level.enemies.forEach (function(enemy) {
-    renderEntity(enemy);
-  });
-
-
-
-  fireballs.forEach(function(fireball) {
-    renderEntity(fireball);
-  })
-
-  //then we draw every static object.
-  for(var i = 0; i < 15; i++) {
-    for (var j = Math.floor(vX / 16) - 1; j < Math.floor(vX / 16) + 20; j++){
-      if (level.statics[i][j]) {
-        renderEntity(level.statics[i][j]);
-      }
-      if (level.blocks[i][j]) {
-        renderEntity(level.blocks[i][j]);
-        updateables.push(level.blocks[i][j]);
-      }
-    }
-  }
