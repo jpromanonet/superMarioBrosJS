@@ -125,35 +125,3 @@ function handleInput(dt) {
     player.noWalk();
   }
 }
-
-//update all the moving stuff
-function updateEntities(dt, gameTime) {
-  player.update(dt, vX);
-  updateables.forEach (function(ent) {
-    ent.update(dt, gameTime);
-  });
-
-  //This should stop the jump when he switches sides on the flag.
-  if (player.exiting) {
-    if (player.pos[0] > vX + 96)
-      vX = player.pos[0] - 96
-  }else if (level.scrolling && player.pos[0] > vX + 80) {
-    vX = player.pos[0] - 80;
-  }
-
-  if (player.powering.length !== 0 || player.dying) { return; }
-  level.items.forEach (function(ent) {
-    ent.update(dt);
-  });
-
-  level.enemies.forEach (function(ent) {
-    ent.update(dt, vX);
-  });
-
-  fireballs.forEach(function(fireball) {
-    fireball.update(dt);
-  });
-  level.pipes.forEach (function(pipe) {
-    pipe.update(dt);
-  });
-}
