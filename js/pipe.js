@@ -25,3 +25,37 @@
             this.endsection = level.pipeLeft;
         }
     }
+
+    Pipe.prototype.checkPipe = function () {
+        if (this.destination === undefined || !input.isDown(this.direction)) return;
+
+        var h = player.power === 0 ? 16 : 32;
+        var x = Math.floor(player.pos[0]);
+        var y = Math.floor(player.pos[1]);
+        switch (this.direction) {
+            case 'RIGHT': if (x === this.pos[0] - 16 &&
+                y >= this.pos[1] &&
+                y + h <= this.pos[1] + 32) {
+                player.pipe(this.direction, this.destination)
+            }
+                break;
+            case 'LEFT': if (x === this.pos[0] + 16 * this.length &&
+                y >= this.pos[1] &&
+                y + h <= this.pos[1] + 32) {
+                player.pipe(this.direction, this.destination)
+            }
+                break;
+            case 'UP': if (y === this.pos[1] + 16 * this.length &&
+                x >= this.pos[0] &&
+                x + 16 <= this.pos[0] + 32) {
+                player.pipe(this.direction, this.destination)
+            }
+                break;
+            case 'DOWN': if (y + h === this.pos[1] &&
+                x >= this.pos[0] &&
+                x + 16 <= this.pos[0] + 32) {
+                player.pipe(this.direction, this.destination);
+            }
+                break;
+        }
+    }
